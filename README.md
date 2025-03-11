@@ -1,4 +1,5 @@
 # Containerized CRUD Application
+<img width="1276" alt="Screenshot 2025-03-10 at 9 19 44 PM" src="https://github.com/user-attachments/assets/d88c53fb-92a3-4105-9d33-2427d45bc826" />
 
 A full-stack web application with CRUD functionality, authentication, and containerization.
 

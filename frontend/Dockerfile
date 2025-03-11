@@ -1,12 +1,12 @@
-FROM node:20 as build
+FROM oven/bun:slim as build
 
 WORKDIR /app
 
 COPY package.json ./
-RUN npm install
+RUN bun install
 
 COPY . .
-RUN npm run build
+RUN bun run build
 
 FROM nginx:alpine
 COPY --from=build /app/build /usr/share/nginx/html

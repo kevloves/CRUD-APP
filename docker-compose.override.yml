@@ -18,17 +18,14 @@ services:
       - mongodb
 
   frontend:
-    build: 
-      context: ./frontend
-      dockerfile: Dockerfile
-      target: build
+    image: oven/bun:slim
+    working_dir: /app
     volumes:
       - ./frontend:/app
-      - /app/node_modules
     environment:
       - REACT_APP_API_URL=http://localhost:8080/api
     ports:
       - "3000:3000"
-    command: npm start
+    command: sh -c "bun install && bun start"
     depends_on:
       - backend

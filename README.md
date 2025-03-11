@@ -98,8 +98,58 @@ npm start
 
 ## Deployment
 
-The application is containerized and ready for deployment to AWS:
+### AWS Elastic Beanstalk Deployment
 
+This application is configured for easy deployment to AWS Elastic Beanstalk using Docker containers.
+
+#### Prerequisites:
+
+1. AWS CLI installed and configured
+2. Elastic Beanstalk CLI installed
+3. Docker installed and running
+4. A MongoDB Atlas database (or other MongoDB deployment)
+
+#### Deploy:
+
+1. Run the deployment script:
+   ```
+   ./deploy.sh
+   ```
+2. The script will prompt you for:
+   - MongoDB URI
+   - JWT Secret
+
+3. The script will:
+   - Update the Dockerrun.aws.json configuration
+   - Initialize Elastic Beanstalk if needed
+   - Create or update the EB environment
+   - Deploy the application
+
+#### Manual Deployment Steps:
+
+If you prefer to deploy manually:
+
+1. Build and push Docker images:
+   ```
+   docker build -t your-docker-hub-username/crud-frontend:latest ./frontend
+   docker build -t your-docker-hub-username/crud-backend:latest ./backend
+   docker push your-docker-hub-username/crud-frontend:latest
+   docker push your-docker-hub-username/crud-backend:latest
+   ```
+
+2. Update Dockerrun.aws.json with your Docker image names and environment variables
+
+3. Initialize Elastic Beanstalk:
+   ```
+   eb init
+   ```
+
+4. Create an environment and deploy:
+   ```
+   eb create
+   ```
+
+Other deployment options:
 - **Amazon ECS/EKS**: Deploy the containers using AWS container services
 - **Amazon EC2**: Deploy using docker-compose on EC2 instances
 - **AWS App Runner**: Deploy the containers directly

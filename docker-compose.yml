@@ -1,51 +1,20 @@
-version: '3.8'
+version: '3'
 
 services:
-  mongodb:
-    image: mongo:latest
-    restart: always
-    volumes:
-      - mongo-data:/data/db
-    ports:
-      - "27017:27017"
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=admin
-      - MONGO_INITDB_ROOT_PASSWORD=password
-    networks:
-      - app-network
-
-  backend:
-    build: ./backend
-    restart: always
-    ports:
-      - "8080:8080"
-    depends_on:
-      - mongodb
-    environment:
-      - NODE_ENV=production
-      - MONGODB_URI=mongodb://admin:password@mongodb:27017/crud_app?authSource=admin
-      - JWT_SECRET=your_jwt_secret
-      - PORT=8080
-    networks:
-      - app-network
-
   frontend:
-    build: 
-      context: ./frontend
-      dockerfile: Dockerfile
-    restart: always
+    image: kevloves/crud-frontend:latest
     ports:
       - "80:80"
     depends_on:
       - backend
+    mem_limit: 256m
+
+  backend:
+    image: kevloves/crud-backend:latest
+    ports:
+      - "5000:5000"
     environment:
-      - REACT_APP_API_URL=http://localhost:8080/api
-    networks:
-      - app-network
-
-networks:
-  app-network:
-    driver: bridge
-
-volumes:
-  mongo-data:
+      - NODE_ENV=production
+      - MONGODB_URI=mongodb+srv://admin:password@mongodb.example.com/crud-app
+      - JWT_SECRET=myJWTsecret123
+    mem_limit: 256m

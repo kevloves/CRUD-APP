@@ -1,5 +1,3 @@
-version: '3'
-
 services:
   frontend:
     image: kevloves/crud-frontend:latest
@@ -18,3 +16,16 @@ services:
       - MONGODB_URI=mongodb+srv://admin:password@mongodb.example.com/crud-app
       - JWT_SECRET=myJWTsecret123
     mem_limit: 256m
+
+  mongodb:
+    image: mongo
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=password
+    volumes:
+      - mongodb_data:/data/db
+    ports:
+      - "27017:27017"
+
+volumes:
+  mongodb_data:

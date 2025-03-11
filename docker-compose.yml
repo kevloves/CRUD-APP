@@ -12,7 +12,7 @@ services:
   backend:
     image: kevloves/crud-backend:latest
     ports:
-      - "5000:5000"
+      - "5001:5000"
     environment:
       - NODE_ENV=production
       - MONGODB_URI=mongodb+srv://admin:password@mongodb.example.com/crud-app

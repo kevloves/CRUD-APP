@@ -1,0 +1,17 @@
+# Ignore node modules (large directory)
+node_modules/
+
+# Ignore build artifacts
+build/
+dist/
+
+# Ignore dev files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.DS_Store
+
+# DO NOT IGNORE THESE CRITICAL FILES
+!Dockerfile
+!Dockerrun.aws.json
+!nginx.conf

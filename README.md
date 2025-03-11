@@ -46,9 +46,6 @@ crud-app/
 ```bash
 # For development environment with hot reloading
 docker-compose up
-
-# For production build
-docker-compose -f docker-compose.yml up
 ```
 
 The development environment will start:
@@ -59,30 +56,6 @@ The development environment will start:
 The production environment will start:
 - Backend API server on port 5001
 - Frontend web server on port 80
-
-### Local Development
-
-1. Start the MongoDB container:
-
-```bash
-docker-compose up mongodb
-```
-
-2. Install backend dependencies and start server:
-
-```bash
-cd backend
-bun install
-bun dev
-```
-
-3. Install frontend dependencies and start development server:
-
-```bash
-cd frontend
-npm install
-npm start
-```
 
 ## API Endpoints
 
